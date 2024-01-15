@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Alta de oficio</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link th:replace="/fragments/Boostrap-Icono :: link"></link>
+
+
+        <style>
+            body {
+                background: #FDC830;  /* fallback for old browsers */
+                background: -webkit-linear-gradient(to right, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to right, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+            }
+            body {
+
+                align-items: center;
+                justify-content: center;
+                height: 100vh; /* Esto asegura que el contenedor ocupa el 100% del alto de la pantalla */
+                margin: 0; /* Elimina el margen predeterminado del body */
+            }
+
+            .formulario {
+                text-align: center;
+            }
+        </style>
+
+    </head>
+    <body>
+
+        <!-- FRAGMENTS DEL NAVBAR -->
+        <nav th:replace="/fragments/navbarLogueado :: nav"></nav>
+        <br><br>
+
+        <!-- Contenedor centrado -->
+        <div class="container">
+            <div class="d-flex justify-content-center my-auto">
+                <div class="formulario">
+                    <h1 class="tituloform">CALIFICAR PROVEEDOR</h1>
+                    <br>
+                    <form th:action="@{/trabajo/modificar/__${trabajo.id}__}" method="post">
+
+                        <div class="form-group">
+                            <label for="comentario">Comentario:</label>
+                            <textarea class="form-control" id="comentario" name="comentario" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- Calificación con estrellas -->
+                            <label for="calificacion"></label>
+                            <div class="testimonial-rating" style="font-size: 20px;">
+                                <label for="calificacion">Calificación:</label>
+                                <input type="number" id="calificacion" name="calificacion" min="1" max="5" step="1" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark mt-2 botones"><strong> Enviar Calificación </strong></button>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${error}" class="alert alert-danger text-center">
+            <p th:text="${error}" class="text-large">Mensaje de error personalizado</p>
+        </div>
+        <!-- Alerta de Éxito -->
+        <div th:if="${mensaje}" class="alert alert-success text-center fixed-top w-50 mx-auto my-5" id="successMessage">
+            <p th:text="${mensaje}" class="text-large">Mensaje de éxito personalizado</p>
+        </div>
+
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = document.getElementById('successMessage');
+            if (successMessage) {
+            setTimeout(function() {
+            successMessage.style.display = 'none';
+            }, 3000); // Oculta el mensaje después de 3 segundos
+            }
+            });
+            /*]]>*/
+        </script>
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        <!-- FRAGMENTS DEL FOOTER -->
+        <div th:replace="/fragments/footer :: div"></div>
+
+        <!-- Enlaces a Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            function rateStar(rating) {
+            // Muestra el número de calificación
+            alert('Calificación seleccionada: ' + rating);
+
+            // Puedes eliminar la lógica de cambio de color si no es necesaria para tu caso
+            }
+        </script>
+
+    </body>
+</html>

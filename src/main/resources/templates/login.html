@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Inicia Sesion</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link th:replace="/fragments/Boostrap-Icono :: link"></link>
+
+        <!-- Tus estilos personalizados u hojas de estilo adicionales -->
+        <link href="/login.css" rel="stylesheet" type="text/css"/>
+        
+        
+        <style>
+            /* Error message de registro*/
+            .alert-danger {
+                background-color: #f8d7da; /* Red background color */
+                max-width: 400px; /* Adjust the max-width as needed */
+                margin: 0 auto; /* Center the alert horizontally */
+            }
+
+            /* Success message de registro*/
+            .alert-success {
+                background-color: #d4edda; /* Green background color */
+                max-width: 400px; /* Adjust the max-width as needed */
+                margin: 0 auto; /* Center the alert horizontally */
+            }
+        </style>
+    </head>
+    <body>
+
+
+
+        <!-- FRAGMENTS DEL NAVBAR -->
+        <nav th:replace="/fragments/navbarVisitante :: nav"></nav>
+
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+
+                    <form class="formulario formulario-con-borde" th:action="@{/logincheck}" method="POST">
+                        <fieldset>
+                            <div class="mb-2"> <!-- Reduce la distancia superior -->
+                                <label for="exampleInputEmail1" class="form-label-left"><h5>Email</h5></label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Ingrese su correo electrónico" required>
+                            </div>
+                            <div class="mb-2"> <!-- Reduce la distancia superior -->
+                                <label for="exampleInputPassword1" class="form-label-left"><h5>Contraseña</h5></label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Ingrese su contraseña" required>
+                            </div>
+
+                            <div class="mb-2"> <!-- Reduce la distancia superior -->
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1"> Recordar
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-dark mt-2 botones"><strong> INICIAR SESIÓN </strong></button>
+                            </div>
+
+                            <br>
+                            <!--  <a th:href="@{/registrar}" class="btn btn-outline-success"><strong> DESEAS REGISTRARTE COMO USUARIO INGRESA AQUI </strong></a> -->
+
+                            <!-- Dentro de tu HTML actual -->
+                            <a th:href="@{/forgot-password}">¿Olvidaste tu contraseña?</a>
+
+
+
+                        </fieldset>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <br>
+
+        <!-- -------------------------------------------------------------- -->
+        <!-- Alerta de Error -->
+        <div th:if="${error}" class="alert alert-danger text-center">
+            <p th:text="${error}" class="text-large">Mensaje de error personalizado</p>
+        </div>
+        <!-- Alerta de Éxito -->
+        <div th:if="${mensaje}" class="alert alert-success text-center">
+            <p th:text="${mensaje}" class="text-large">Mensaje de éxito personalizado</p>
+        </div>
+
+
+
+        <!-- FRAGMENTS DEL FOOTER -->
+        <div th:replace="/fragments/footer :: div"></div>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Otras dependencias y estilos -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Otros scripts -->
+
+    </body>
+</html>
+

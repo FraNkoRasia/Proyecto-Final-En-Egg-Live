@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Alta de oficio</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link th:replace="/fragments/Boostrap-Icono :: link"></link>
+
+
+        <style>
+            body {
+                background: #FDC830;  /* fallback for old browsers */
+                background: -webkit-linear-gradient(to right, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to right, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+            }
+            body {
+
+                align-items: center;
+                justify-content: center;
+                height: 100vh; /* Esto asegura que el contenedor ocupa el 100% del alto de la pantalla */
+                margin: 0; /* Elimina el margen predeterminado del body */
+            }
+
+            .formulario {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- FRAGMENTS DEL NAVBAR -->
+        <nav th:replace="/fragments/navbarLogueado :: nav"></nav>
+        <br>
+        <div class="formulario">
+            <h1 class="tituloform">CAMBIE EL ESTADO DEL TRABAJO REALIZADO</h1>
+            <br>
+            <form th:action="@{/trabajo/cambiar/__${trabajo.id}__}" method="post">
+                <div class="mb-3">
+                    <!-- Otros campos ocultos -->
+                   <select name="estado">
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="En Curso">En Curso</option>
+                        <option value="Cancelado">Cancelado</option>
+                        <option value="Finalizado">Finalizado</option>
+                    </select>
+                    <br><br>
+                    <button type="submit" class="btn btn-dark mt-2 botones"><strong> Cambiar Estado </strong></button>
+                </div>
+            </form>
+        </div>
+
+       
+        
+        <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+        <!-- FRAGMENTS DEL FOOTER -->
+        <div th:replace="/fragments/footer :: div"></div>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Otras dependencias y estilos -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Otros scripts -->
+
+    </body>
+</html>

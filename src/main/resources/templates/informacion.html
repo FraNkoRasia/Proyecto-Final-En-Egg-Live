@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Informacion</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link th:replace="/fragments/Boostrap-Icono :: link"></link>
+
+        <!-- Tus estilos personalizados u hojas de estilo adicionales -->
+        <link href="/informacion.css" rel="stylesheet" type="text/css"/>
+
+        <style>
+            /* ... (damos estilo a las imagenes con movimiento) ... */
+            .image-container figure {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .image-container img {
+                width: 100%;
+                height: auto;
+                transition: transform 0.5s ease-out;
+            }
+
+            .image-container figure:hover img {
+                transform: scale(1.15);
+            }
+
+            .image-container figcaption {
+                position: absolute;
+                top: 102%;
+                left: 50%;
+                transform: translate(-50%, -110%); /* Adjust the second value to move the caption up or down */
+                opacity: 1;
+                transition: opacity 0.3s ease-out;
+            }
+
+
+            .image-container figure:hover figcaption {
+                opacity: 0.5;  /* Cambia la opacidad al pasar el mouse sobre la imagen */
+            }
+            /* ... (aqui termina el estilo de las imagenes con movimiento) ... */
+
+            /* Error message de registro*/
+            .alert-danger {
+                background-color: #f8d7da; /* Red background color */
+                max-width: 400px; /* Adjust the max-width as needed */
+                margin: 0 auto; /* Center the alert horizontally */
+            }
+
+            /* Success message de registro*/
+            .alert-success {
+                background-color: #d4edda; /* Green background color */
+                max-width: 400px; /* Adjust the max-width as needed */
+                margin: 0 auto; /* Center the alert horizontally */
+            }
+        </style>
+    </head>
+
+    <!-- FRAGMENTS DEL NAVBAR -->
+    <nav th:replace="/fragments/navbarLogueado :: nav"></nav>
+ <div th:if="${error}" class="alert alert-success text-center w-50 mx-auto my-5">
+        <p th:text="${error}" class="text-large">Mensaje de error personalizado</p>
+    </div>
+    <!-- Alerta de Éxito -->
+    
+    <div th:if="${mensaje}" class="alert alert-success text-center  w-50 mx-auto my-5" id="successMessage">
+        <p th:text="${mensaje}" class="text-large">Mensaje de éxito personalizado</p>
+    </div>
+
+    <div class="container my-5">
+        <h1 class="Sunday" align="center">Bienvenido a Coria Servicios!</h1>
+    </div>
+
+    <div class="image-container">
+        <figure>
+            <a href="/servicios/gasista">
+                <img src="/imagenes/ingeniero.png" alt="Gasista">
+            </a>
+            <figcaption><h1 class="Sunday">Gasista</h1></figcaption>
+        </figure>
+        <figure>
+            <a href="/servicios/electricista">
+                <img src="/imagenes/ingeniero5.png" alt="Electricista">
+            </a>
+            <figcaption><h1 class="Sunday">Electricista</h1></figcaption>
+        </figure>
+        <figure>
+            <a href="/servicios/plomero">
+                <img src="/imagenes/ingeniero7.png" alt="Plomero">
+            </a>
+            <figcaption><h1 class="Sunday">Plomero</h1></figcaption>
+        </figure>
+    </div>
+
+
+
+    <br>
+    <br>
+
+
+
+
+
+   
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        document.addEventListener('DOMContentLoaded', function() {
+        var successMessage = document.getElementById('successMessage');
+        if (successMessage) {
+        setTimeout(function() {
+        successMessage.style.display = 'none';
+        }, 3000); // Oculta el mensaje después de 3 segundos
+        }
+        });
+        /*]]>*/
+        
+        /*<![CDATA[*/
+    document.addEventListener('DOMContentLoaded', function() {
+        var errorMessage = document.getElementById('errorMessage');
+        if (errorMessage) {
+            setTimeout(function() {
+                errorMessage.style.display = 'none';
+                window.location.href = '/'; // Redirige a la página de inicio después de 3 segundos
+            }, 3000);
+        }
+    });
+    /*]]>*/
+    </script>
+   
+
+
+
+
+
+    <!-- FRAGMENTS DEL FOOTER -->
+    <div th:replace="/fragments/footer :: div"></div>
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Otras dependencias y estilos -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Otros scripts -->
+</body>
+</html>

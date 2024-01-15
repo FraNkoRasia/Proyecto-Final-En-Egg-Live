@@ -1,0 +1,51 @@
+body {
+    background: #FDC830;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+footer {
+    background-color: #000000;
+    opacity: 0.8;
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+}
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.image-container figure {
+    text-align: center;
+    margin: 10px;
+}
+
+.image-container img {
+    max-width: 100%;
+    border: 2px solid transparent;
+    transition: border 0.3s;
+    margin: 10px; /* Agrega un espacio entre las imágenes y el borde */
+    padding: 30px; /* Agrega espacio dentro del borde */
+}
+
+.image-container a {
+    text-decoration: none;
+}
+
+.image-container figcaption {
+    font-size: 14px;
+    margin-top: 5px;
+}
+.image-container img:hover {
+    border: 1px solid #000; /* Cambia el color del borde al pasar el mouse sobre la imagen */
+}
+@font-face {
+    font-family: sundays;
+    src: url('Sunday.ttf') format('truetype');
+}
+
+.Sunday {
+    font-family: sundays;
+}

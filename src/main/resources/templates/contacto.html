@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="utf-8" />
+        <title>Contacto </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link th:replace="/fragments/Boostrap-Icono :: link"></link>
+
+        <!-- Tus estilos personalizados u hojas de estilo adicionales -->
+        <link href="/contacto.css" rel="stylesheet" type="text/css"/>
+
+        <!-- Google Web Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@600;700;800&display=swap"
+            rel="stylesheet"
+            />
+
+    </head>
+    <body>
+
+        <!-- FRAGMENTS DEL NAVBAR -->
+        <nav th:replace="/fragments/navbarLogueado :: nav"></nav>
+
+        <!-- Contact Start -->
+        <div class="container-fluid pt-3">
+            <div class="d-flex flex-column text-center mb-5 pt-5">
+                <h1 class="display-3 m-0"><strong>Contactate <span class="text-primary"> con nosotros </strong></span></h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-8 mb-5">
+                    <div class="contactForm">
+                        <div id="success"></div>
+
+
+                        <form method="POST" th:action="@{/sendMail}" id="emailForm" class="container">
+
+                            <div class="control-group">
+                                <input
+                                    type="text"
+                                    class="form-control p-4"
+                                    name="name"
+                                    placeholder="Ingrese su nombre"
+                                    required="required"
+                                    data-validation-required-message="Por favor ingrese su nombre"
+                                    />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <input
+                                    type="email"
+                                    class="form-control p-4"
+                                    name="email"
+                                    placeholder="Ingrese su correo electónico"
+                                    required="required"
+                                    data-validation-required-message="Por favor ingrese su Correo electónico"
+                                    />
+                                <p class="help-block text-danger"></p>
+                            </div>
+
+                            <div class="control-group">
+                                <input
+                                    type="text"
+                                    class="form-control p-4"
+                                    name="subject"
+                                    placeholder="Ingrese el assunto"
+                                    required="required"
+                                    data-validation-required-message="Por favor ingrese su assunto del mensaje"
+                                    />
+                                <p class="help-block text-danger"></p>
+                            </div>
+
+                            <div class="control-group">
+                                <textarea
+                                    class="form-control p-4"
+                                    rows="6"
+                                    name="body"
+                                    placeholder="Ingrese el mensaje"
+                                    required="required"
+                                    data-validation-required-message="Por favor ingrese su mensaje"
+                                    ></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+
+                            <div>
+                                <button
+                                    class="btn btn-primary py-3 px-5"
+                                    type="submit"
+                                    id="sendMessageButton"
+                                    onclick="enviarMensaje()"> 
+
+                                    Enviar Mensaje
+
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-8 mb-8">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1673.4343328926523!2d-68.87751967210865!3d-32.98086663617352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967e0af3d8d3c519%3A0x467c2f44f7c38823!2sBesares%201079%2C%20Chacras%20de%20Coria%2C%20Mendoza!5e0!3m2!1ses!2sar!4v1700607827267!5m2!1ses!2sar" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Contact End -->
+<div th:if="${error}" class="alert alert-success text-center fixed-top w-50 mx-auto my-5">
+        <p th:text="${error}" class="text-large">Mensaje de error personalizado</p>
+    </div>
+    <!-- Alerta de Éxito -->
+    <!-- Alerta de Éxito -->
+    <!-- Alerta de Éxito -->
+    <div th:if="${mensaje}" class="alert alert-success text-center fixed-top w-50 mx-auto my-5" id="successMessage">
+        <p th:text="${mensaje}" class="text-large">Mensaje de éxito personalizado</p>
+    </div>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        document.addEventListener('DOMContentLoaded', function() {
+        var successMessage = document.getElementById('successMessage');
+        if (successMessage) {
+        setTimeout(function() {
+        successMessage.style.display = 'none';
+        }, 3000); // Oculta el mensaje después de 3 segundos
+        }
+        });
+        /*]]>*/
+    </script>
+
+        <!-- FRAGMENTS DEL FOOTER -->
+        <div th:replace="/fragments/footer :: div"></div>
+
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Otras dependencias y estilos -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Otros scripts -->
+
+    </body>
+</html>

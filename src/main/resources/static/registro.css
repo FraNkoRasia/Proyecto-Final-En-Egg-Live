@@ -1,0 +1,59 @@
+body {
+    background: #FDC830;
+    background: -webkit-linear-gradient(to right, #F37335, #FDC830);
+    background: linear-gradient(to right, #F37335, #FDC830);
+}
+
+.container-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 50px); /* Adjust the height to move the form closer to the navbar */
+}
+
+.formulario-con-borde {
+    margin: 10% auto;
+    border: 2px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.formulario {
+    width: 80%;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.btn {
+    width: 100%;
+}
+
+footer {
+    background-color: #000000;
+    opacity: 0.8;
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+}
+/* Error message de registro*/
+.alert-danger {
+    background-color: #f8d7da; /* Red background color */
+    max-width: 400px; /* Adjust the max-width as needed */
+    margin: 0 auto; /* Center the alert horizontally */
+}
+
+/* Success message de registro*/
+.alert-success {
+    background-color: #d4edda; /* Green background color */
+    max-width: 400px; /* Adjust the max-width as needed */
+    margin: 0 auto; /* Center the alert horizontally */
+}

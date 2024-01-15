@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Inicia Sesion</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link th:replace="/fragments/Boostrap-Icono :: link"></link>
+
+        <!-- Tus estilos personalizados u hojas de estilo adicionales -->
+        <link href="/index.css" rel="stylesheet" type="text/css"/>
+
+
+        <!-- Etiquetas Open Graph -->
+        <meta property="og:title" content="CORIA SERVICIOS"> <!-- CAMBIA EL TITULO -->
+        <meta property="og:type" content="website">
+        <meta property="og:description" content="Contrata tu Proveedor de Servicios Coria"><!-- CAMBIA LA DESCRIPCION DE LA PAGINA -->
+        <meta property="og:image" content="https://play-code.onrender.com/imagenes/calculando.jpg"> <!-- CAMBIA LA DIRECCION DE TU PAGINA + LA IMAGEN QUE QUIERES MOSTRAR AL COMPARTIR LA URL -->
+        <meta property="og:url" content="https://play-code.onrender.com/"> <!-- CAMBIA  LA DIRECCION DE TU PAGINA -->
+
+        <style>
+            /* ... (damos estilo a las imagenes con movimiento) ... */
+            .image-container figure {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .image-container img {
+                width: 100%;
+                height: auto;
+                transition: transform 0.5s ease-out;
+            }
+
+            .image-container figure:hover img {
+                transform: scale(1.15);
+            }
+
+            .image-container figcaption {
+                position: absolute;
+                top: 102%;
+                left: 50%;
+                transform: translate(-50%, -110%); /* Adjust the second value to move the caption up or down */
+                opacity: 1;
+                transition: opacity 0.3s ease-out;
+            }
+
+
+            .image-container figure:hover figcaption {
+                opacity: 0.5;  /* Cambia la opacidad al pasar el mouse sobre la imagen */
+            }
+            /* ... (aqui termina el estilo de las imagenes con movimiento) ... */
+
+            /* ... (centramos el ALERT) ... */
+            #alert-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                justify-content: center;
+                align-items: center;
+            }
+
+            #alert-box {
+                background: #fff;
+                padding: 20px;
+                border-radius: 5px;
+                text-align: center;
+            }
+            /* ... (aqui termino el estilo del ALERT) ... */
+            @font-face {
+                font-family: sundays;
+                src: url('Sunday.ttf') format('truetype');
+            }
+            .Sunday {
+                font-family: sundays;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <!-- FRAGMENTS DEL NAVBAR -->
+        <nav th:replace="/fragments/navbarVisitante :: nav"></nav>
+
+        <div class="image-container">
+            <figure onclick="mostrarAlerta('Gasista')">
+                <a href="#">
+                    <img src="/imagenes/ingeniero.png" alt="Gasista">
+                </a>
+                <figcaption><h1 class="Sunday">Gasista</h1></figcaption>
+            </figure>
+            <figure onclick="mostrarAlerta('Electricista')">
+                <a href="#">
+                    <img src="/imagenes/ingeniero5.png" alt="Electricista">
+                </a>
+                <figcaption><h1 class="Sunday">Electricista</h1></figcaption>
+            </figure>
+            <figure onclick="mostrarAlerta('Plomero')">
+                <a href="#">
+                    <img src="/imagenes/ingeniero7.png" alt="Plomero">
+                </a>
+                <figcaption><h1 class="Sunday">Plomero</h1></figcaption>
+            </figure>
+        </div>
+
+
+
+        <script>
+            function mostrarAlerta(profesion) {
+            var usuarioRegistrado = true; // Cambiar a tu lógica de verificación
+
+            if (usuarioRegistrado) {
+            var alertOverlay = document.getElementById('alert-overlay');
+            var alertBox = document.getElementById('alert-box');
+
+            alertBox.innerHTML = 'Debes estar Registrado para ver los ' + profesion + ' disponibles';
+
+            alertOverlay.style.display = 'flex';
+            } else {
+            alert('Debes estar registrado para acceder a esta información.');
+            }
+            }
+
+            function cerrarAlerta() {
+            var alertOverlay = document.getElementById('alert-overlay');
+            alertOverlay.style.display = 'none';
+            }
+        </script>
+
+        <div id="alert-overlay" onclick="cerrarAlerta()">
+            <div id="alert-box"></div>
+        </div>
+
+        <!-- -------------------------------------------------------------- -->
+        <!-- Alerta de Error -->
+        <div th:if="${error}" class="alert alert-danger text-center">
+            <p th:text="${error}" class="text-large">Mensaje de error personalizado</p>
+        </div>
+        <!-- Alerta de Éxito -->
+        <div th:if="${mensaje}" class="alert alert-success text-center">
+            <p th:text="${mensaje}" class="text-large">Mensaje de éxito personalizado</p>
+        </div>
+        <br><br>
+        <!-- FRAGMENTS DEL FOOTER -->
+        <div th:replace="/fragments/footer :: div"></div>
+
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Otras dependencias y estilos -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Otros scripts -->
+
+    </body>
+</html>

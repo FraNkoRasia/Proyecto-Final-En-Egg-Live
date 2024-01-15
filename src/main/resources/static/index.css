@@ -1,0 +1,52 @@
+body {
+    background: #FDC830;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.image-container figure {
+    text-align: center;
+    margin: 10px;
+}
+
+.image-container img {
+    max-width: 100%;
+    border: 2px solid transparent;
+    transition: border 0.3s;
+    margin: 10px; /* Agrega un espacio entre las imágenes y el borde */
+    padding: 30px; /* Agrega espacio dentro del borde */
+}
+
+.image-container a {
+    text-decoration: none;
+}
+
+.image-container figcaption {
+    font-size: 14px;
+    margin-top: 5px;
+}
+.image-container img:hover {
+    border: 0px solid #000; /* Cambia el color del borde al pasar el mouse sobre la imagen */
+}
+
+
+/* Error message de registro*/
+.alert-danger {
+    background-color: #f8d7da; /* Red background color */
+    max-width: 400px; /* Adjust the max-width as needed */
+    margin: 0 auto; /* Center the alert horizontally */
+}
+
+/* Success message de registro*/
+.alert-success {
+    background-color: #d4edda; /* Green background color */
+    max-width: 400px; /* Adjust the max-width as needed */
+    margin: 0 auto; /* Center the alert horizontally */
+}
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Inicia Sesion</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+        <link th:replace="/fragments/Boostrap-Icono :: link"></link>
+        
+        <!-- Tus estilos personalizados u hojas de estilo adicionales -->
+        <link href="/listaUsuarios.css" rel="stylesheet" type="text/css"/>
+
+    </head>
+    <body>
+        <!-- FRAGMENTS DEL NAVBAR -->
+        <nav th:replace="/fragments/navbarLogueado :: nav"></nav>
+        <br>
+
+        <ul>
+            <h1 align="center" class="Sunday">Lista de Usuarios</h1>
+
+            <table align="center" class="table table-dark" style="width: 90%;">
+                <thead class="align-items-center">
+                    <tr>
+                        <th scope="col" class="text-center">ID del Usuario</th>
+                        <th scope="col" class="text-center">Nombre</th>
+                        <th scope="col" class="text-center">Apellido</th>
+                        <th scope="col" class="text-center">Email</th>
+                        <th scope="col" class="text-center">Telefono</th>
+                        <th scope="col" class="text-center">Foto de Perfil</th>
+                        <th scope="col" class="text-center">Rol</th>
+                        <th scope="col" class="text-center">Fecha Baja</th>
+                        <th scope="col" class="text-center">Motivo Baja</th>
+                        <th scope="col" class="text-center">Modificar</th>
+                        <th scope="col" class="text-center">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="usuario : ${listaUsuarios}">
+                        <th scope="row" class="text-center" th:text="${#strings.substring(usuario.id, 0, 4)}"></th>
+                        <td class="text-center" th:text="${usuario.nombre}"></td>
+                        <td class="text-center" th:text="${usuario.apellido}"></td>
+                        <td class="text-center" th:text="${usuario.email}"></td>
+                        <td class="text-center" th:text="${usuario.telefono}"></td>
+                        <td class="text-center">
+                            <a><img th:if="${usuario.imagen != null}" class="logo" th:src="@{/imagen/perfil/_${usuario.id}_}"></a>
+                        </td>
+                        <td class="text-center" th:text="${usuario.rol}"></td>
+                        <td class="text-center" th:text="${usuario.fechaBaja}"></td>
+                        <td class="text-center" th:text="${usuario.motivoBaja}"></td>
+                        <td class="text-center">
+                            <a sec:authorize="hasRole('ADMIN')" th:href="@{/perfilAdmin/{id}(id=${usuario.id})}">
+                                <button class="Botonmodificar">Modificar</button>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <form sec:authorize="hasRole('ADMIN')" th:action="@{/eliminar/{id}(id=${usuario.id})}" method="POST">
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <button class="Botoneliminar">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </ul>
+        <br> <br> <br> <br> <br> <br> <br> <br>
+        <!-- FRAGMENTS DEL FOOTER -->
+        <div th:replace="/fragments/footer :: div"></div>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Otras dependencias y estilos -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Otros scripts -->
+
+    </body>
+
+</html>
